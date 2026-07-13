@@ -22,6 +22,7 @@
         beamWrap: document.getElementById('beamWrap'),
         statusDot: document.getElementById('statusDot'),
         statusText: document.getElementById('statusText'),
+        stageSection: document.getElementById('torch'),
         body: document.body,
       };
 
@@ -35,13 +36,16 @@
         }
       });
 
+      // "Try it free" on screen one scrolls down to the torch stage
+      // and, if it's still off, switches it on for the person.
       const scrollBtn = document.getElementById('scrollToTorch');
       if (scrollBtn) {
         scrollBtn.addEventListener('click', () => {
+          elements.stageSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
           if (!isOn) {
-            handleTorchClick();
+            // Slight delay so the ON transition is felt after arrival, not before.
+            window.setTimeout(turnOn, 500);
           }
-          elements.torch.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
       }
     }
@@ -56,6 +60,7 @@
     }
 
     function turnOn() {
+      if (isOn) return;
       isOn = true;
       elements.torch.classList.add('is-on');
       elements.torch.setAttribute('aria-pressed', 'true');
@@ -64,6 +69,7 @@
       elements.statusDot.classList.add('is-on');
       elements.statusText.textContent = 'ON';
       elements.body.classList.add('is-lit');
+      if (elements.stageSection) elements.stageSection.classList.add('is-lit');
     }
 
     // Exposed only in case future premium logic legitimately allows OFF.
@@ -76,6 +82,7 @@
       elements.statusDot.classList.remove('is-on');
       elements.statusText.textContent = 'OFF';
       elements.body.classList.remove('is-lit');
+      if (elements.stageSection) elements.stageSection.classList.remove('is-lit');
     }
 
     return { init, forceOff, get isOn() { return isOn; } };
@@ -83,9 +90,10 @@
 
   /* ---------------------------------------------------
      Module: ModalController
-     The premium upsell modal. Close and "Maybe Later"
-     both intentionally fail to dismiss it — that's the
-     joke — reinforcing the upgrade message instead.
+     The premium upsell modal. "Close" genuinely closes.
+     "Maybe Later" shakes and refuses — that's the joke.
+     "Upgrade Plan" closes the modal and carries the
+     person down to the full Pricing section.
      --------------------------------------------------- */
   const ModalController = (() => {
     let elements = {};
@@ -97,6 +105,7 @@
         closeBtn: document.getElementById('modalClose'),
         laterBtn: document.getElementById('modalLater'),
         upgradeBtn: document.getElementById('modalUpgrade'),
+        pricingSection: document.getElementById('pricing'),
       };
 
       if (!elements.overlay) return;
@@ -105,21 +114,20 @@
         btn.addEventListener('click', open);
       });
 
-      elements.closeBtn.addEventListener('click', handleDismissAttempt);
+      elements.closeBtn.addEventListener('click', close);
       elements.laterBtn.addEventListener('click', handleMaybeLater);
       elements.upgradeBtn.addEventListener('click', handleUpgrade);
 
-      // Clicking the dark overlay also nudges toward upgrading,
-      // rather than closing — consistent with the modal's copy.
+      // Clicking the dark overlay behaves like Close.
       elements.overlay.addEventListener('click', (e) => {
         if (e.target === elements.overlay) {
-          handleDismissAttempt();
+          close();
         }
       });
 
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && elements.overlay.classList.contains('is-open')) {
-          handleDismissAttempt();
+          close();
         }
       });
     }
@@ -130,21 +138,24 @@
       elements.upgradeBtn.focus();
     }
 
-    function handleDismissAttempt() {
-      // Deliberately does not close. Reinforces the bit with a shake.
-      shake(elements.modal);
+    function close() {
+      elements.overlay.classList.remove('is-open');
+      elements.overlay.setAttribute('aria-hidden', 'true');
     }
 
     function handleMaybeLater() {
+      // Deliberately does not close. Reinforces the bit with a shake.
       shake(elements.laterBtn);
+      shake(elements.modal);
     }
 
     function handleUpgrade() {
-      shake(elements.modal);
-      elements.upgradeBtn.textContent = 'Redirecting to checkout…';
-      setTimeout(() => {
-        elements.upgradeBtn.textContent = 'Upgrade Now';
-      }, 1800);
+      close();
+      if (elements.pricingSection) {
+        window.setTimeout(() => {
+          elements.pricingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
+      }
     }
 
     function shake(el) {
@@ -157,16 +168,17 @@
       }, { once: true });
     }
 
-    return { init, open };
+    return { init, open, close };
   })();
 
   /* ---------------------------------------------------
      Module: RevealOnScroll
-     Subtle fade/slide-in for sections as they enter view.
+     Subtle fade/slide-in for elements and sections as
+     they enter view.
      --------------------------------------------------- */
   const RevealOnScroll = (() => {
-    function init() {
-      const targets = document.querySelectorAll('[data-reveal]');
+    function observe(selector, threshold, rootMargin) {
+      const targets = document.querySelectorAll(selector);
       if (!targets.length) return;
 
       if (!('IntersectionObserver' in window)) {
@@ -183,10 +195,15 @@
             }
           });
         },
-        { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+        { threshold, rootMargin }
       );
 
       targets.forEach((el) => observer.observe(el));
+    }
+
+    function init() {
+      observe('[data-reveal]', 0.15, '0px 0px -40px 0px');
+      observe('[data-reveal-section]', 0.12, '0px 0px -60px 0px');
     }
 
     return { init };
@@ -222,10 +239,9 @@
     RevealOnScroll.init();
     SmoothAnchors.init();
 
-    // Hero is above the fold — reveal it immediately rather
+    // Screen one is above the fold — reveal it immediately rather
     // than waiting on a scroll-triggered observer.
-    const hero = document.querySelector('.hero [data-reveal], .nav[data-reveal]');
-    document.querySelectorAll('.nav[data-reveal], .hero__copy[data-reveal], .hero__stage[data-reveal]')
+    document.querySelectorAll('.nav[data-reveal], .hero-headline__inner[data-reveal]')
       .forEach((el) => requestAnimationFrame(() => el.classList.add('is-visible')));
   });
 })();
