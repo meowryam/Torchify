@@ -26,7 +26,6 @@
         <a href="#top" class="nav__link">Home</a>
         <a href="#torch" class="nav__link">The Torch</a>
         <a href="#pricing" class="nav__link">Pricing</a>
-        <a href="#about" class="nav__link">About</a>
       </nav>
 
       <a href="#pricing" class="nav__cta">Go Premium</a>
@@ -36,40 +35,36 @@
   <main id="top">
 
     <!-- ============================================= -->
-    <!-- HERO — SCREEN ONE: headline, nothing else      -->
+    <!-- 1. HERO — pure typography, no flashlight       -->
     <!-- ============================================= -->
-    <section class="hero-headline" id="hero">
-      <div class="hero-headline__inner" data-reveal>
-        <p class="eyebrow">Illumination, reimagined</p>
-        <h1 class="hero-headline__title">
-          Darkness<br>
-          shouldn't be<br>
-          <em>free.</em>
+    <section class="hero" id="hero">
+      <div class="hero__inner">
+        <p class="eyebrow" data-stagger>Illumination, reimagined</p>
+
+        <h1 class="hero__title">
+          <span data-stagger>Torchify</span>
         </h1>
-        <p class="hero-headline__sub">
-          Torchify gives everyone the right to switch a light on. What you do
-          with that light afterward.. like turning it back off.. is a
-          privilege we believe should be earned.
+
+        <h2 class="hero__headline">
+          <span data-stagger>Darkness shouldn't</span>
+          <span data-stagger><em>be free.</em></span>
+        </h2>
+
+        <p class="hero__sub" data-stagger>
+          The world's first premium light management platform.
         </p>
 
-        <div class="hero-headline__actions">
-          <button class="btn btn--primary" id="scrollToTorch">Try it free</button>
+        <div class="hero__actions" data-stagger>
+          <a href="#torch" class="btn btn--primary">Experience Torchify <span class="btn__arrow">↓</span></a>
           <a href="#pricing" class="btn btn--ghost">See plans</a>
         </div>
 
-        <p class="hero-headline__fineprint">No credit card required to turn on. One is required to turn off.</p>
-
-        <div class="hero-headline__scrollcue" aria-hidden="true">
-          <span>The torch awaits</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 4v16M6 14l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        <p class="hero__fineprint" data-stagger>Trusted by absolutely nobody (yet). </p>
       </div>
     </section>
 
     <!-- ============================================= -->
-    <!-- HERO — SCREEN TWO: the torch, and only the torch -->
+    <!-- 2. FLASHLIGHT EXPERIENCE — the main attraction -->
     <!-- ============================================= -->
     <section class="torch-stage-section" id="torch" data-reveal-section>
       <div class="torch-stage__label">
@@ -112,52 +107,7 @@
     </section>
 
     <!-- ============================================= -->
-    <!-- LOGO / TRUST STRIP                             -->
-    <!-- ============================================= -->
-    <section class="trust" data-reveal-section>
-      <p class="trust__label">As trusted as the sun by</p>
-      <div class="trust__row">
-        <span>Caves &amp; Co.</span>
-        <span>Midnight Ventures</span>
-        <span>Basement Capital</span>
-        <span>Eclipse Partners</span>
-        <span>Blackout Studios</span>
-      </div>
-    </section>
-
-    <!-- ============================================= -->
-    <!-- ABOUT / PHILOSOPHY                             -->
-    <!-- ============================================= -->
-    <section class="philosophy" id="about" data-reveal-section>
-      <div class="philosophy__inner">
-        <p class="eyebrow">Our philosophy</p>
-        <h2 class="philosophy__title">
-          Light is a beginning.<br>
-          Ending it is a choice- <em>and choices have value.</em>
-        </h2>
-
-        <div class="philosophy__grid">
-          <div class="philosophy__item">
-            <span class="philosophy__num">One</span>
-            <h3>On is a right</h3>
-            <p>Every person deserves the ability to see. Torchify's ON switch is, and will always be, free of charge.</p>
-          </div>
-          <div class="philosophy__item">
-            <span class="philosophy__num">Two</span>
-            <h3>Off is a feature</h3>
-            <p>Restraint is sophisticated. Choosing darkness again is a premium act of intention — priced accordingly.</p>
-          </div>
-          <div class="philosophy__item">
-            <span class="philosophy__num">Three</span>
-            <h3>Glow is forever</h3>
-            <p>With Torchify Free, your light burns until you're ready to invest in the privilege of switching it off.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================= -->
-    <!-- PRICING                                        -->
+    <!-- 3. PRICING                                     -->
     <!-- ============================================= -->
     <section class="pricing" id="pricing" data-reveal-section>
       <div class="pricing__head">
@@ -168,22 +118,22 @@
 
       <div class="pricing__grid">
 
-        <article class="plan">
+        <article class="plan" data-stagger-card>
           <div class="plan__head">
             <h3 class="plan__name">Starter</h3>
             <p class="plan__desc">For the light-curious.</p>
           </div>
           <p class="plan__price"><span class="plan__amount">$0</span><span class="plan__period">/forever</span></p>
           <ul class="plan__features">
-            <li>Turn your flashlight ON</li>
-            <li>One (1) flashlight, always on</li>
-            <li>Standard-issue brightness</li>
-            <li>Community shadow forum access</li>
+            <li>✓  Turn ON</li>
+            <li>✓  One flashlight</li>
+            <li>✗  OFF button</li>
+            <li>✗  Customer dignity</li>
           </ul>
           <a href="#torch" class="btn btn--outline plan__btn">Start illuminating</a>
         </article>
 
-        <article class="plan plan--featured">
+        <article class="plan plan--featured" data-stagger-card>
           <p class="plan__badge">Most illuminating</p>
           <div class="plan__head">
             <h3 class="plan__name">Pro</h3>
@@ -191,27 +141,27 @@
           </div>
           <p class="plan__price"><span class="plan__amount">$9.99</span><span class="plan__period">/month</span></p>
           <ul class="plan__features">
-            <li>Everything in Starter</li>
-            <li><strong>Unlimited OFFs</strong></li>
-            <li>Priority Darkness queue</li>
-            <li>Cloud Sync across all torches</li>
-            <li>Dimmer control (25%–100%)</li>
+            <li>✓ Premium Shadows™</li>
+            <li><strong>✓ Pause before regret</strong></li>
+            <li>✓ Unlimited OFFs</li>
+            <li>✓ Priority Darkness</li>
+            <li>✓ AI-powered Switch Detection</li>
           </ul>
           <button class="btn btn--primary plan__btn" data-open-modal>Go Pro</button>
         </article>
 
-        <article class="plan">
+        <article class="plan" data-stagger-card>
           <div class="plan__head">
             <h3 class="plan__name">Enterprise</h3>
             <p class="plan__desc">For organizations that dream in shadow.</p>
           </div>
           <p class="plan__price"><span class="plan__amount">Contact Sales</span></p>
           <ul class="plan__features">
-            <li>Everything in Pro</li>
-            <li>Dedicated Darkness Consultant</li>
-            <li>24/7 Night Support</li>
-            <li>Unlimited Team Shadows</li>
-            <li>Custom SLA on switch latency</li>
+            <li>✓ Department-wide darkness</li>
+            <li>✓ Team OFF management</li>
+            <li>✓ Quarterly illumination reports</li>
+            <li>✓ Dedicated Darkness Success Manager</li>
+            <li>✓ ISO 9001 compliant shadows</li>
           </ul>
           <button class="btn btn--outline plan__btn" data-open-modal>Talk to sales</button>
         </article>
@@ -219,21 +169,10 @@
       </div>
     </section>
 
-    <!-- ============================================= -->
-    <!-- CLOSING CTA                                    -->
-    <!-- ============================================= -->
-    <section class="closing" data-reveal-section>
-      <div class="closing__inner">
-        <h2 class="closing__title">The light is on.<br><em>Now what?</em></h2>
-        <p class="closing__sub">Thousands have discovered that switching off is a privilege worth paying for. Join them.</p>
-        <button class="btn btn--primary" data-open-modal>Upgrade to Premium</button>
-      </div>
-    </section>
-
   </main>
 
   <!-- ============================================= -->
-  <!-- FOOTER                                         -->
+  <!-- 4. FOOTER                                      -->
   <!-- ============================================= -->
   <footer class="footer">
     <div class="footer__inner">
@@ -246,11 +185,9 @@
           <p class="footer__heading">Product</p>
           <a href="#pricing">Pricing</a>
           <a href="#torch">The Torch</a>
-          <a href="#about">Philosophy</a>
         </div>
         <div class="footer__col">
           <p class="footer__heading">Company</p>
-          <a href="#about">About</a>
           <a href="#">Careers</a>
           <a href="#">Press</a>
         </div>
@@ -268,7 +205,7 @@
   </footer>
 
   <!-- ============================================= -->
-  <!-- PREMIUM UPGRADE MODAL — pricing lives here too  -->
+  <!-- PREMIUM UPGRADE MODAL — message only, no pricing -->
   <!-- ============================================= -->
   <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" id="modal">
@@ -283,21 +220,6 @@
         Anyone can start a light. Ending one gracefully takes discipline —
         and a plan. Your flashlight will remain on until you upgrade.
       </p>
-
-      <div class="modal__pricing">
-        <div class="modal__plan">
-          <p class="modal__plan-name">Starter</p>
-          <p class="modal__plan-price">$0<span>/forever</span></p>
-        </div>
-        <div class="modal__plan modal__plan--featured">
-          <p class="modal__plan-name">Pro</p>
-          <p class="modal__plan-price">$9.99<span>/mo</span></p>
-        </div>
-        <div class="modal__plan">
-          <p class="modal__plan-name">Enterprise</p>
-          <p class="modal__plan-price">Contact<span>&nbsp;sales</span></p>
-        </div>
-      </div>
 
       <div class="modal__actions">
         <button class="btn btn--primary modal__upgrade" id="modalUpgrade">Upgrade Plan</button>

@@ -6,11 +6,6 @@
 (function () {
   'use strict';
 
-  /* ---------------------------------------------------
-     Module: TorchController
-     Handles the single flashlight: ON is free, OFF is
-     gated behind the premium modal.
-     --------------------------------------------------- */
   const TorchController = (() => {
     let isOn = false;
     let elements = {};
@@ -35,26 +30,12 @@
           handleTorchClick();
         }
       });
-
-      // "Try it free" on screen one scrolls down to the torch stage
-      // and, if it's still off, switches it on for the person.
-      const scrollBtn = document.getElementById('scrollToTorch');
-      if (scrollBtn) {
-        scrollBtn.addEventListener('click', () => {
-          elements.stageSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          if (!isOn) {
-            // Slight delay so the ON transition is felt after arrival, not before.
-            window.setTimeout(turnOn, 500);
-          }
-        });
-      }
     }
 
     function handleTorchClick() {
       if (!isOn) {
         turnOn();
       } else {
-        // Second click: flashlight cannot be turned off without Premium.
         ModalController.open();
       }
     }
@@ -72,7 +53,6 @@
       if (elements.stageSection) elements.stageSection.classList.add('is-lit');
     }
 
-    // Exposed only in case future premium logic legitimately allows OFF.
     function forceOff() {
       isOn = false;
       elements.torch.classList.remove('is-on');
@@ -88,13 +68,6 @@
     return { init, forceOff, get isOn() { return isOn; } };
   })();
 
-  /* ---------------------------------------------------
-     Module: ModalController
-     The premium upsell modal. "Close" genuinely closes.
-     "Maybe Later" shakes and refuses — that's the joke.
-     "Upgrade Plan" closes the modal and carries the
-     person down to the full Pricing section.
-     --------------------------------------------------- */
   const ModalController = (() => {
     let elements = {};
 
@@ -118,17 +91,12 @@
       elements.laterBtn.addEventListener('click', handleMaybeLater);
       elements.upgradeBtn.addEventListener('click', handleUpgrade);
 
-      // Clicking the dark overlay behaves like Close.
       elements.overlay.addEventListener('click', (e) => {
-        if (e.target === elements.overlay) {
-          close();
-        }
+        if (e.target === elements.overlay) close();
       });
 
       document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && elements.overlay.classList.contains('is-open')) {
-          close();
-        }
+        if (e.key === 'Escape' && elements.overlay.classList.contains('is-open')) close();
       });
     }
 
@@ -144,7 +112,6 @@
     }
 
     function handleMaybeLater() {
-      // Deliberately does not close. Reinforces the bit with a shake.
       shake(elements.laterBtn);
       shake(elements.modal);
     }
@@ -160,7 +127,6 @@
 
     function shake(el) {
       el.classList.remove('btn--shake');
-      // Force reflow so the animation can retrigger on repeated clicks.
       void el.offsetWidth;
       el.classList.add('btn--shake');
       el.addEventListener('animationend', () => {
@@ -171,13 +137,8 @@
     return { init, open, close };
   })();
 
-  /* ---------------------------------------------------
-     Module: RevealOnScroll
-     Subtle fade/slide-in for elements and sections as
-     they enter view.
-     --------------------------------------------------- */
   const RevealOnScroll = (() => {
-    function observe(selector, threshold, rootMargin) {
+    function observe(selector, threshold, rootMargin, staggered) {
       const targets = document.querySelectorAll(selector);
       if (!targets.length) return;
 
@@ -190,7 +151,13 @@
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
+              if (staggered) {
+                const siblings = entry.target.parentElement.querySelectorAll(selector);
+                const index = Array.prototype.indexOf.call(siblings, entry.target);
+                window.setTimeout(() => entry.target.classList.add('is-visible'), index * 90);
+              } else {
+                entry.target.classList.add('is-visible');
+              }
               observer.unobserve(entry.target);
             }
           });
@@ -202,18 +169,20 @@
     }
 
     function init() {
-      observe('[data-reveal]', 0.15, '0px 0px -40px 0px');
-      observe('[data-reveal-section]', 0.12, '0px 0px -60px 0px');
+      observe('[data-reveal-section]', 0.12, '0px 0px -60px 0px', false);
+      observe('.plan', 0.15, '0px 0px -40px 0px', true);
+
+      // Hero staggered fade-in, timed rather than scroll-triggered
+      // since the hero is the first thing visible on load.
+      const staggerEls = document.querySelectorAll('.hero [data-stagger]');
+      staggerEls.forEach((el, i) => {
+        window.setTimeout(() => el.classList.add('is-visible'), 120 + i * 110);
+      });
     }
 
     return { init };
   })();
 
-  /* ---------------------------------------------------
-     Module: SmoothAnchors
-     Ensures in-page nav links scroll smoothly and
-     account for the sticky header height.
-     --------------------------------------------------- */
   const SmoothAnchors = (() => {
     function init() {
       document.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -230,18 +199,12 @@
     return { init };
   })();
 
-  /* ---------------------------------------------------
-     Bootstrap
-     --------------------------------------------------- */
   document.addEventListener('DOMContentLoaded', () => {
     TorchController.init();
     ModalController.init();
     RevealOnScroll.init();
     SmoothAnchors.init();
 
-    // Screen one is above the fold — reveal it immediately rather
-    // than waiting on a scroll-triggered observer.
-    document.querySelectorAll('.nav[data-reveal], .hero-headline__inner[data-reveal]')
-      .forEach((el) => requestAnimationFrame(() => el.classList.add('is-visible')));
+    requestAnimationFrame(() => document.querySelector('.nav')?.classList.add('is-visible'));
   });
 })();
