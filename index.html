@@ -24,6 +24,7 @@
 
       <nav class="nav__links" aria-label="Primary">
         <a href="#top" class="nav__link">Home</a>
+        <a href="#torch" class="nav__link">The Torch</a>
         <a href="#pricing" class="nav__link">Pricing</a>
         <a href="#about" class="nav__link">About</a>
       </nav>
@@ -35,73 +36,85 @@
   <main id="top">
 
     <!-- ============================================= -->
-    <!-- HERO                                           -->
+    <!-- HERO — SCREEN ONE: headline, nothing else      -->
     <!-- ============================================= -->
-    <section class="hero" id="hero">
-      <div class="hero__inner">
+    <section class="hero-headline" id="hero">
+      <div class="hero-headline__inner" data-reveal>
+        <p class="eyebrow">Illumination, reimagined</p>
+        <h1 class="hero-headline__title">
+          Darkness<br>
+          shouldn't be<br>
+          <em>free.</em>
+        </h1>
+        <p class="hero-headline__sub">
+          Torchify gives everyone the right to switch a light on. What you do
+          with that light afterward.. like turning it back off.. is a
+          privilege we believe should be earned.
+        </p>
 
-        <div class="hero__copy" data-reveal>
-          <p class="eyebrow">Illumination, reimagined</p>
-          <h1 class="hero__title">
-            Darkness<br>
-            shouldn't be<br>
-            <em>free.</em>
-          </h1>
-          <p class="hero__sub">
-            Torchify gives everyone the right to switch a light on. What you do
-            with that light afterward — like turning it back off — is a
-            privilege we believe should be earned.
-          </p>
-
-          <div class="hero__actions">
-            <button class="btn btn--primary" id="scrollToTorch">Try it free</button>
-            <a href="#pricing" class="btn btn--ghost">See plans</a>
-          </div>
-
-          <p class="hero__fineprint">No credit card required to turn on. One is required to turn off.</p>
+        <div class="hero-headline__actions">
+          <button class="btn btn--primary" id="scrollToTorch">Try it free</button>
+          <a href="#pricing" class="btn btn--ghost">See plans</a>
         </div>
 
-        <div class="hero__stage" data-reveal>
-          <!-- ============================================= -->
-          <!-- FLASHLIGHT — pure CSS construction             -->
-          <!-- ============================================= -->
-          <div class="torch-scene">
-            <div class="torch-glow" id="torchGlow" aria-hidden="true"></div>
-            <div class="beam-wrap" id="beamWrap" aria-hidden="true">
-              <div class="beam"></div>
-            </div>
+        <p class="hero-headline__fineprint">No credit card required to turn on. One is required to turn off.</p>
 
-            <button class="torch" id="torchButton" aria-pressed="false" aria-label="Turn flashlight on or off">
-              <span class="torch__head">
-                <span class="torch__lens">
-                  <span class="torch__bulb"></span>
-                </span>
-                <span class="torch__ring"></span>
-              </span>
-              <span class="torch__neck"></span>
-              <span class="torch__body">
-                <span class="torch__grip"></span>
-                <span class="torch__grip"></span>
-                <span class="torch__grip"></span>
-                <span class="torch__band"></span>
-              </span>
-              <span class="torch__switch"></span>
-            </button>
-
-            <div class="torch-status">
-              <span class="torch-status__dot" id="statusDot"></span>
-              <span class="torch-status__text" id="statusText">OFF</span>
-            </div>
-          </div>
+        <div class="hero-headline__scrollcue" aria-hidden="true">
+          <span>The torch awaits</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 4v16M6 14l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
-
       </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- HERO — SCREEN TWO: the torch, and only the torch -->
+    <!-- ============================================= -->
+    <section class="torch-stage-section" id="torch" data-reveal-section>
+      <div class="torch-stage__label">
+        <p class="eyebrow">The instrument</p>
+        <h2>Press it once for light. Press it again for a <em>decision.</em></h2>
+      </div>
+
+      <!-- ============================================= -->
+      <!-- FLASHLIGHT — pure CSS construction             -->
+      <!-- ============================================= -->
+      <div class="torch-scene">
+        <div class="torch-glow" id="torchGlow" aria-hidden="true"></div>
+        <div class="beam-wrap" id="beamWrap" aria-hidden="true">
+          <div class="beam"></div>
+        </div>
+
+        <button class="torch" id="torchButton" aria-pressed="false" aria-label="Turn flashlight on or off">
+          <span class="torch__head">
+            <span class="torch__lens">
+              <span class="torch__bulb"></span>
+            </span>
+            <span class="torch__ring"></span>
+          </span>
+          <span class="torch__neck"></span>
+          <span class="torch__body">
+            <span class="torch__grip"></span>
+            <span class="torch__grip"></span>
+            <span class="torch__grip"></span>
+            <span class="torch__band"></span>
+          </span>
+          <span class="torch__switch"></span>
+        </button>
+      </div>
+
+      <div class="torch-status">
+        <span class="torch-status__dot" id="statusDot"></span>
+        <span class="torch-status__text" id="statusText">OFF</span>
+      </div>
+      <p class="torch-stage__hint">Click the torch to begin.</p>
     </section>
 
     <!-- ============================================= -->
     <!-- LOGO / TRUST STRIP                             -->
     <!-- ============================================= -->
-    <section class="trust" data-reveal>
+    <section class="trust" data-reveal-section>
       <p class="trust__label">As trusted as the sun by</p>
       <div class="trust__row">
         <span>Caves &amp; Co.</span>
@@ -115,12 +128,12 @@
     <!-- ============================================= -->
     <!-- ABOUT / PHILOSOPHY                             -->
     <!-- ============================================= -->
-    <section class="philosophy" id="about" data-reveal>
+    <section class="philosophy" id="about" data-reveal-section>
       <div class="philosophy__inner">
         <p class="eyebrow">Our philosophy</p>
         <h2 class="philosophy__title">
           Light is a beginning.<br>
-          Ending it is a choice — <em>and choices have value.</em>
+          Ending it is a choice- <em>and choices have value.</em>
         </h2>
 
         <div class="philosophy__grid">
@@ -146,7 +159,7 @@
     <!-- ============================================= -->
     <!-- PRICING                                        -->
     <!-- ============================================= -->
-    <section class="pricing" id="pricing" data-reveal>
+    <section class="pricing" id="pricing" data-reveal-section>
       <div class="pricing__head">
         <p class="eyebrow">Pricing</p>
         <h2 class="pricing__title">Choose your relationship with darkness.</h2>
@@ -209,7 +222,7 @@
     <!-- ============================================= -->
     <!-- CLOSING CTA                                    -->
     <!-- ============================================= -->
-    <section class="closing" data-reveal>
+    <section class="closing" data-reveal-section>
       <div class="closing__inner">
         <h2 class="closing__title">The light is on.<br><em>Now what?</em></h2>
         <p class="closing__sub">Thousands have discovered that switching off is a privilege worth paying for. Join them.</p>
@@ -232,7 +245,7 @@
         <div class="footer__col">
           <p class="footer__heading">Product</p>
           <a href="#pricing">Pricing</a>
-          <a href="#hero">The Torch</a>
+          <a href="#torch">The Torch</a>
           <a href="#about">Philosophy</a>
         </div>
         <div class="footer__col">
@@ -255,7 +268,7 @@
   </footer>
 
   <!-- ============================================= -->
-  <!-- PREMIUM UPGRADE MODAL                          -->
+  <!-- PREMIUM UPGRADE MODAL — pricing lives here too  -->
   <!-- ============================================= -->
   <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" id="modal">
@@ -268,16 +281,30 @@
       <h2 class="modal__title" id="modalTitle">Turning your flashlight <em>off</em> requires Torchify Premium.</h2>
       <p class="modal__body">
         Anyone can start a light. Ending one gracefully takes discipline —
-        and a $9.99/month subscription. Your flashlight will remain on until
-        you upgrade.
+        and a plan. Your flashlight will remain on until you upgrade.
       </p>
 
+      <div class="modal__pricing">
+        <div class="modal__plan">
+          <p class="modal__plan-name">Starter</p>
+          <p class="modal__plan-price">$0<span>/forever</span></p>
+        </div>
+        <div class="modal__plan modal__plan--featured">
+          <p class="modal__plan-name">Pro</p>
+          <p class="modal__plan-price">$9.99<span>/mo</span></p>
+        </div>
+        <div class="modal__plan">
+          <p class="modal__plan-name">Enterprise</p>
+          <p class="modal__plan-price">Contact<span>&nbsp;sales</span></p>
+        </div>
+      </div>
+
       <div class="modal__actions">
-        <button class="btn btn--primary modal__upgrade" id="modalUpgrade">Upgrade Now</button>
+        <button class="btn btn--primary modal__upgrade" id="modalUpgrade">Upgrade Plan</button>
         <button class="btn btn--text modal__later" id="modalLater">Maybe Later</button>
       </div>
 
-      <p class="modal__fineprint">By clicking "Upgrade Now" you agree to a lifetime of turning things off responsibly.</p>
+      <p class="modal__fineprint">By clicking "Upgrade Plan" you agree to a lifetime of turning things off responsibly.</p>
     </div>
   </div>
 
