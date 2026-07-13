@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Torchify — Darkness shouldn't be free.</title>
+  <meta name="description" content="Torchify is the world's first premium illumination platform. Turning your light on is free. Turning it off is a privilege." />
+
+  <!-- Fonts: Fraunces (display serif) + IBM Plex Sans (utility sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================= -->
+  <!-- NAVIGATION                                     -->
+  <!-- ============================================= -->
+  <header class="nav" data-reveal>
+    <div class="nav__inner">
+      <a href="#top" class="nav__logo">Torchify<span class="nav__logo-mark">.</span></a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#top" class="nav__link">Home</a>
+        <a href="#pricing" class="nav__link">Pricing</a>
+        <a href="#about" class="nav__link">About</a>
+      </nav>
+
+      <a href="#pricing" class="nav__cta">Go Premium</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============================================= -->
+    <!-- HERO                                           -->
+    <!-- ============================================= -->
+    <section class="hero" id="hero">
+      <div class="hero__inner">
+
+        <div class="hero__copy" data-reveal>
+          <p class="eyebrow">Illumination, reimagined</p>
+          <h1 class="hero__title">
+            Darkness<br>
+            shouldn't be<br>
+            <em>free.</em>
+          </h1>
+          <p class="hero__sub">
+            Torchify gives everyone the right to switch a light on. What you do
+            with that light afterward — like turning it back off — is a
+            privilege we believe should be earned.
+          </p>
+
+          <div class="hero__actions">
+            <button class="btn btn--primary" id="scrollToTorch">Try it free</button>
+            <a href="#pricing" class="btn btn--ghost">See plans</a>
+          </div>
+
+          <p class="hero__fineprint">No credit card required to turn on. One is required to turn off.</p>
+        </div>
+
+        <div class="hero__stage" data-reveal>
+          <!-- ============================================= -->
+          <!-- FLASHLIGHT — pure CSS construction             -->
+          <!-- ============================================= -->
+          <div class="torch-scene">
+            <div class="torch-glow" id="torchGlow" aria-hidden="true"></div>
+            <div class="beam-wrap" id="beamWrap" aria-hidden="true">
+              <div class="beam"></div>
+            </div>
+
+            <button class="torch" id="torchButton" aria-pressed="false" aria-label="Turn flashlight on or off">
+              <span class="torch__head">
+                <span class="torch__lens">
+                  <span class="torch__bulb"></span>
+                </span>
+                <span class="torch__ring"></span>
+              </span>
+              <span class="torch__neck"></span>
+              <span class="torch__body">
+                <span class="torch__grip"></span>
+                <span class="torch__grip"></span>
+                <span class="torch__grip"></span>
+                <span class="torch__band"></span>
+              </span>
+              <span class="torch__switch"></span>
+            </button>
+
+            <div class="torch-status">
+              <span class="torch-status__dot" id="statusDot"></span>
+              <span class="torch-status__text" id="statusText">OFF</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- LOGO / TRUST STRIP                             -->
+    <!-- ============================================= -->
+    <section class="trust" data-reveal>
+      <p class="trust__label">As trusted as the sun by</p>
+      <div class="trust__row">
+        <span>Caves &amp; Co.</span>
+        <span>Midnight Ventures</span>
+        <span>Basement Capital</span>
+        <span>Eclipse Partners</span>
+        <span>Blackout Studios</span>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- ABOUT / PHILOSOPHY                             -->
+    <!-- ============================================= -->
+    <section class="philosophy" id="about" data-reveal>
+      <div class="philosophy__inner">
+        <p class="eyebrow">Our philosophy</p>
+        <h2 class="philosophy__title">
+          Light is a beginning.<br>
+          Ending it is a choice — <em>and choices have value.</em>
+        </h2>
+
+        <div class="philosophy__grid">
+          <div class="philosophy__item">
+            <span class="philosophy__num">One</span>
+            <h3>On is a right</h3>
+            <p>Every person deserves the ability to see. Torchify's ON switch is, and will always be, free of charge.</p>
+          </div>
+          <div class="philosophy__item">
+            <span class="philosophy__num">Two</span>
+            <h3>Off is a feature</h3>
+            <p>Restraint is sophisticated. Choosing darkness again is a premium act of intention — priced accordingly.</p>
+          </div>
+          <div class="philosophy__item">
+            <span class="philosophy__num">Three</span>
+            <h3>Glow is forever</h3>
+            <p>With Torchify Free, your light burns until you're ready to invest in the privilege of switching it off.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- PRICING                                        -->
+    <!-- ============================================= -->
+    <section class="pricing" id="pricing" data-reveal>
+      <div class="pricing__head">
+        <p class="eyebrow">Pricing</p>
+        <h2 class="pricing__title">Choose your relationship with darkness.</h2>
+        <p class="pricing__sub">Simple, transparent, faintly unreasonable pricing.</p>
+      </div>
+
+      <div class="pricing__grid">
+
+        <article class="plan">
+          <div class="plan__head">
+            <h3 class="plan__name">Starter</h3>
+            <p class="plan__desc">For the light-curious.</p>
+          </div>
+          <p class="plan__price"><span class="plan__amount">$0</span><span class="plan__period">/forever</span></p>
+          <ul class="plan__features">
+            <li>Turn your flashlight ON</li>
+            <li>One (1) flashlight, always on</li>
+            <li>Standard-issue brightness</li>
+            <li>Community shadow forum access</li>
+          </ul>
+          <a href="#torch" class="btn btn--outline plan__btn">Start illuminating</a>
+        </article>
+
+        <article class="plan plan--featured">
+          <p class="plan__badge">Most illuminating</p>
+          <div class="plan__head">
+            <h3 class="plan__name">Pro</h3>
+            <p class="plan__desc">For those who wish to stop.</p>
+          </div>
+          <p class="plan__price"><span class="plan__amount">$9.99</span><span class="plan__period">/month</span></p>
+          <ul class="plan__features">
+            <li>Everything in Starter</li>
+            <li><strong>Unlimited OFFs</strong></li>
+            <li>Priority Darkness queue</li>
+            <li>Cloud Sync across all torches</li>
+            <li>Dimmer control (25%–100%)</li>
+          </ul>
+          <button class="btn btn--primary plan__btn" data-open-modal>Go Pro</button>
+        </article>
+
+        <article class="plan">
+          <div class="plan__head">
+            <h3 class="plan__name">Enterprise</h3>
+            <p class="plan__desc">For organizations that dream in shadow.</p>
+          </div>
+          <p class="plan__price"><span class="plan__amount">Contact Sales</span></p>
+          <ul class="plan__features">
+            <li>Everything in Pro</li>
+            <li>Dedicated Darkness Consultant</li>
+            <li>24/7 Night Support</li>
+            <li>Unlimited Team Shadows</li>
+            <li>Custom SLA on switch latency</li>
+          </ul>
+          <button class="btn btn--outline plan__btn" data-open-modal>Talk to sales</button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- CLOSING CTA                                    -->
+    <!-- ============================================= -->
+    <section class="closing" data-reveal>
+      <div class="closing__inner">
+        <h2 class="closing__title">The light is on.<br><em>Now what?</em></h2>
+        <p class="closing__sub">Thousands have discovered that switching off is a privilege worth paying for. Join them.</p>
+        <button class="btn btn--primary" data-open-modal>Upgrade to Premium</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================= -->
+  <!-- FOOTER                                         -->
+  <!-- ============================================= -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <p class="footer__logo">Torchify<span class="nav__logo-mark">.</span></p>
+        <p class="footer__tag">Illumination is free. Discretion isn't.</p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <p class="footer__heading">Product</p>
+          <a href="#pricing">Pricing</a>
+          <a href="#hero">The Torch</a>
+          <a href="#about">Philosophy</a>
+        </div>
+        <div class="footer__col">
+          <p class="footer__heading">Company</p>
+          <a href="#about">About</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+        </div>
+        <div class="footer__col">
+          <p class="footer__heading">Legal</p>
+          <a href="#">Terms of Darkness</a>
+          <a href="#">Off-Switch Policy</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Torchify, Inc. All lights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============================================= -->
+  <!-- PREMIUM UPGRADE MODAL                          -->
+  <!-- ============================================= -->
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" id="modal">
+      <button class="modal__close" id="modalClose" aria-label="Close">
+        <span></span>
+        <span></span>
+      </button>
+
+      <p class="modal__eyebrow">Premium Feature</p>
+      <h2 class="modal__title" id="modalTitle">Turning your flashlight <em>off</em> requires Torchify Premium.</h2>
+      <p class="modal__body">
+        Anyone can start a light. Ending one gracefully takes discipline —
+        and a $9.99/month subscription. Your flashlight will remain on until
+        you upgrade.
+      </p>
+
+      <div class="modal__actions">
+        <button class="btn btn--primary modal__upgrade" id="modalUpgrade">Upgrade Now</button>
+        <button class="btn btn--text modal__later" id="modalLater">Maybe Later</button>
+      </div>
+
+      <p class="modal__fineprint">By clicking "Upgrade Now" you agree to a lifetime of turning things off responsibly.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
